@@ -1,0 +1,90 @@
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" style="text-align: right" data-dismiss="modal">&times;</button>
+                <h4>编辑你的信息</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="row form-group">
+                        <label class="col-lg-2">name：</label><input type="text" class="col-lg-3"value={{ user.name }}>
+                        <label class="col-lg-2">profession:</label><input type="text" class="col-lg-3"/>
+                    </div>
+                    <div class="row form-group">
+                        <label class="col-lg-2">sex:</label>
+                        <input type="radio" name="sex"/>&nbsp;female&nbsp;
+                        <input type="radio" name="sex"/>&nbsp;male
+                    </div>
+                    <div class="row form-group">
+                        <label class="col-lg-2">city:</label>
+                        <div class="form-group col-lg-10">
+                            <div class="btn-group dropup">
+                                <button class="btn btn-default" type="button" data-toggle="dropdown">China&nbsp;&nbsp;<span class="caret"></span></button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">UK</a></li>
+                                    <li><a href="#">USA</a></li>
+                                </ul>
+                            </div>
+                            <div class="btn-group dropup">
+                                <button class="btn btn-default" type="button" data-toggle="dropdown">请选择&nbsp;&nbsp<span
+                                        class="caret"></span></button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">四川</a></li>
+                                </ul>
+                            </div>
+                            <div class="btn-group dropup">
+                                <button class="btn btn-default" type="button" data-toggle="dropdown">请选择&nbsp;&nbsp<span
+                                        class="caret"></span></button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">成都</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <label class="col-lg-2">birthday:</label>
+                        <input type="date">
+                    </div>
+                    <div class="row form-group">
+                        <label class="col-lg-2">简介：</label>
+                        <textarea class="col-lg-9" placeholder="300字以内"style="resize: none;"rows="4"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-primary">cancel</button>
+                <button type="submit" class="btn-primary"href="{{ url_for("change",name = name) }}">save</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-lg-9">
+    <ul class="nav navbar-nav">
+        {% if user.profession %}
+            <li>user.profession</li>
+        {% else %}
+            <li>未填写行业&nbsp;&nbsp;|&nbsp;&nbsp;</li>
+        {% endif %}
+        {% if user.sex %}
+            <li>user.sex</li>
+        {% else %}
+            <li>未填写性别&nbsp;&nbsp;|&nbsp;&nbsp;</li>
+        {% endif %}
+        {% if user.city %}
+            <li>user.city</li>
+        {% else %}
+            <li>未填写城市&nbsp;&nbsp;|&nbsp;&nbsp;</li>
+        {% endif %}
+        {% if user.birthday %}
+            <li>user.birthday</li>
+        {% else %}
+            <li>未填写生日</li>
+        {% endif %}
+    </ul>
+</div>
+<hr class="col-lg-11">
+<div class="col-lg-12">
+    <label>个人简介</label>
+    <p style="text-indent: 2em;">我就是我</p>
+</div>

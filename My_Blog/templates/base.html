@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% if title %}
+        <title>{{ title }} - blog</title>
+    {% else %}
+        <title>blog</title>
+    {% endif %}
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="/static/css/ckeditor/ckeditor.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="navbar">
+        <div class="navbar-inner">
+            <a class="navbar-brand" href="/">MyBlog</a>
+            <ul class="nav navbar-nav">
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                {% if g.user.is_authenticated %}
+                    <li><a href="{{ url_for('user',id = g.user.id) }}">Your Profile</a></li>
+                    <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                {% endif %}
+                <li><a href="{{ url_for('login') }}">Login</a></li>
+                <li><a href="{{ url_for('sign_up') }}">Sign Up</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="well well-lg">
+                <h1>My Blog</h1>
+                <h3>Life & Technology</h3>
+                <ul class="nav nav-pills nav-stacked">
+                    <li class="nav-header">choose</li>
+                    <li><a class="btn btn-default" href="#">Home</a></li>
+                    <li><a class="btn btn-default" href="#">Archive</a></li>
+                    <li><a class="btn btn-default" href="#">About Me</a></li>
+                    <li><a class="btn btn-default" href="{{ url_for('write') }}">Write</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-lg-8">
+            <div>
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

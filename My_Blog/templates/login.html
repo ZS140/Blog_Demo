@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% include 'flash.html' %}
+    <h1 class="row">Login</h1>
+    <form method="post" name='login'>
+        {{ form.hidden_tag() }}
+        <div class="row form-group">
+            <label class="col-sm-2 control-label">name:</label><div>{{ form.username }}</div>
+        </div>
+        <div class="row form-group">
+            <label class="col-sm-2 control-label">password:</label><div>{{ form.password(type="password") }}</div>
+        </div>
+        <div class="row form-group">
+            <p class="col-sm-offset-2 col-sm-10">记住我？{{ form.rememmber_me }}</p>
+        </div>
+        <div class="row form-group">
+            <p class="col-sm-offset-2 col-sm-10">{{ form.submit(class = 'btn btn-primary btn-lg') }}</p>
+        </div>
+    </form>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="well">
+        <header>
+            <h2 class="modal-title">{{ p_content.title }}</h2>
+            <p style="color: gray">{{ p_content.time }}</p>
+            <hr/>
+        </header>
+        <p>{{ p_content.content|safe}}</p>
+    </div>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>{{ g.user.name }}的博客</h1>
+    <div style="border: 2px solid whitesmoke;padding: 10px;border-radius: 5px">
+        {% for p in post.items %}
+            <div class="well well-sm">
+                <h2>
+                    <stong>
+                        <a style="color: #000000;"
+                           href="{{ url_for('detail',post = p.id) }}">{{ p.title }}</a>
+                    </stong>
+                </h2>
+                <div><p style="color:#c0c0c0;">{{ p.content|truncate(100,False)|safe }}</p></div>
+                <p style="color: gray">{{ p.time }}</p>
+            </div>
+        {% endfor %}
+        <ul class="pager">
+            {% if post.has_prev %}
+                <a href="{{ url_for('index',page = post.prev_num) }}"style="text-decoration: none"> &lt;&lt;&lt;</a>
+            {% else %}
+                <a href ="#"style="opacity:0.2;text-decoration: none"> &lt;&lt;&lt;</a>
+            {% endif %}
+            <li>{{ post.page }}</li>
+            {% if post.has_next %}
+                <a href="{{ url_for('index',page = post.next_num) }}"style="text-decoration: none">&gt;&gt;&gt;</a>
+            {% else %}
+                <a href ="#"style="opacity:0.2;text-decoration: none">&gt;&gt;&gt;</a>
+            {% endif %}
+        </ul>
+    </div>
+{% endblock %}

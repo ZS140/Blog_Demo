@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="well well-lg row   ">
+        <div class="col-lg-9"><p>{{ user.name }}</p></div>
+        <div class="col-lg-3">
+            <a class="btn" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-edit"
+                                                                            aria-hidden="true"></span> 修改信息</a>
+        </div>
+       {% include "modal.html" %}
+    </div>
+    <div class="row well well-lg">
+        {% for p in post.items %}
+            <hr>
+            <div class="row">
+                <div class="col-lg-9">
+                    <p>{{ p.time }}</p>
+                    <label>publish:</label>
+                    <p>{{ p.title }}</p>
+                </div>
+                <div class="col-lg-3">
+                    <a class="btn">delete</a>
+                    <a class="btn" href="{{ url_for('edit',post_id = p.id) }}">edit</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <ul class="pager">
+        {% if post.has_prev %}
+            <a class="btn" href="{{ url_for('user',id=user.id,page = post.prev_num) }}"> &lt;&lt;&lt;</a>
+        {% else %}
+            <a class="btn" href="#" style="opacity:0.2;"> &lt;&lt;&lt;</a>
+        {% endif %}
+        <li>{{ post.page }}</li>
+        {% if post.has_next %}
+            <a class="btn" href="{{ url_for('user',id=user.id,page = post.next_num) }}">&gt;&gt;&gt;</a>
+        {% else %}
+            <a class="btn" href="#" style="opacity:0.2">&gt;&gt;&gt;</a>
+        {% endif %}
+    </ul>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% include 'flash.html' %}
+    <form method="post" name="Sign Up">
+        {{ form.hidden_tag() }}
+        <div class="form-group">
+            <label class="col-sm-2 control-label">name:</label><p>{{ form.username }}</p>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">password:</label><p>{{ form.password(type="password") }}</p>
+        </div>
+        <P>{{ form.submit(class = 'btn btn-primary btn-lg') }}</P>
+    </form>
+{% endblock %}
